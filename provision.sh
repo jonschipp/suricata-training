@@ -42,7 +42,7 @@ function hi {
 
 install_dependencies(){
   apt-get update -qq
-  apt-get install -yq cowsay git make sqlite pv
+  apt-get install -yq cowsay git make sqlite pv linux-tools-3.13.0-33-generic
   [[ -d /exercises ]] || mkdir /exercises
 }
 
@@ -58,6 +58,8 @@ install_islet(){
 
 install_environment(){
   [[ -f $CONFIG ]] && install -o root -g root -m 0644 $CONFIG /etc/islet/environments
+  sysctl kernel.perf_event_paranoid=1
+  echo "kernel.perf_event_paranoid = 1" > /etc/sysctl.d/10-perf.conf
 }
 
 install_dependencies "1.)"
