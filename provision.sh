@@ -58,6 +58,7 @@ install_islet(){
 
 install_environment(){
   [[ -f $CONFIG ]] && install -o root -g root -m 0644 $CONFIG /etc/islet/environments
+  sed -i 's/demo/training/' /etc/islet/islet.conf
   sysctl kernel.perf_event_paranoid=-1
   echo "kernel.perf_event_paranoid = -1" > /etc/sysctl.d/10-perf.conf
 }
