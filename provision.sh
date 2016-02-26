@@ -42,7 +42,7 @@ function hi {
 
 install_dependencies(){
   apt-get update -qq
-  apt-get install -yq cowsay git make sqlite pv linux-tools-3.13.0-33-generic
+  apt-get install -yq cowsay git make sqlite pv linux-tools-$(uname -r)
   [[ -d /exercises ]] || mkdir /exercises
 }
 
