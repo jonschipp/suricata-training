@@ -52,18 +52,18 @@ install_islet(){
     git clone http://github.com/jonschipp/islet || die "Clone of islet repo failed"
     cd islet
     make install-docker && ./configure && make logo &&
-    make install && make user-config
+    make install && make user-config USER=training PASS=suricata
   fi
 }
 
 install_environment(){
   [[ -f $CONFIG ]] && install -o root -g root -m 0644 $CONFIG /etc/islet/environments
-  sysctl kernel.perf_event_paranoid=1
-  echo "kernel.perf_event_paranoid = 1" > /etc/sysctl.d/10-perf.conf
+  sysctl kernel.perf_event_paranoid=-1
+  echo "kernel.perf_event_paranoid = -1" > /etc/sysctl.d/10-perf.conf
 }
 
 install_dependencies "1.)"
 install_islet "2.)"
 install_environment "3.)"
 
-echo -e "\nTry it out: ssh -p 2222 demo@127.0.0.1 -o UserKnownHostsFile=/dev/null"
+echo -e "\nTry it out: ssh -p 2222 training@127.0.0.1 -o UserKnownHostsFile=/dev/null"
