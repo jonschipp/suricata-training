@@ -3,7 +3,8 @@
 # Written for Ubuntu Saucy and Trusty, should be adaptable to other distros.
 
 ## Variables
-CONFIG=/home/vagrant/suricata.conf
+VAGRANT=/home/vagrant
+[[ -d "$VAGRANT" ]] && CONFIG="$VAGRANT/suricata.conf" || CONFIG="$PWD/suricata.conf"
 HOME=/root
 cd $HOME
 
