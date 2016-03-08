@@ -43,7 +43,7 @@ function hi {
 
 install_dependencies(){
   apt-get update -qq
-  apt-get install -yq cowsay git make sqlite pv linux-tools-$(uname -r)
+  apt-get install -yq cowsay git make sqlite pv linux-tools-$(uname -r) sysstat htop
   [[ -d /exercises ]] || mkdir /exercises
 }
 
