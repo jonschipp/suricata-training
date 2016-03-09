@@ -15,7 +15,7 @@ ENV VIRTUSER suricata
 RUN apt-get update -qq
 RUN apt-get install -yq man-db software-properties-common vim nano screen \
  htop tcpdump tshark wget gdb linux-tools-generic libluajit-5.1-dev git-core \
- oinkmaster jq python --no-install-recommends
+ oinkmaster jq python python-scapy ethtool --no-install-recommends
 RUN apt-get install -yq libnss3-dev libnspr4-dev libgeoip-dev libgeoip1 --no-install-recommends
 RUN apt-get install -yq libpcre3 libpcre3-dbg libpcre3-dev \
  build-essential autoconf automake libtool libpcap-dev libnet1-dev \
