@@ -13,7 +13,7 @@ ENV VIRTUSER suricata
 
 # Install dependencies
 RUN apt-get update -qq
-RUN apt-get install -yq man-db software-properties-common vim nano screen \
+RUN apt-get install -yq man-db software-properties-common vim nano screen tmux \
  htop tcpdump tshark wget gdb linux-tools-generic libluajit-5.1-dev git-core \
  oinkmaster jq python python-scapy ethtool --no-install-recommends
 RUN apt-get install -yq libnss3-dev libnspr4-dev libgeoip-dev libgeoip1 --no-install-recommends
