@@ -62,6 +62,9 @@ install_environment(){
   sed -i 's/demo/training/' /etc/islet/islet.conf
   sysctl kernel.perf_event_paranoid=-1
   echo "kernel.perf_event_paranoid = -1" > /etc/sysctl.d/10-perf.conf
+  # apparmor profile prevents ``timeout -s KILL 8h tcpdump'' from running in container
+  # tcpdump: error while loading shared libraries: libcrypto.so.1.0.0: cannot open shared object file: Permission denied
+  apparmor_parser -R /etc/apparmor.d/usr.sbin.tcpdump
 }
 
 install_dependencies "1.)"
