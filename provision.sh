@@ -58,6 +58,7 @@ install_islet(){
 }
 
 install_environment(){
+  local apport=/etc/default/apport
   [[ -f $CONFIG ]] && install -o root -g root -m 0644 $CONFIG /etc/islet/environments
   sed -i 's/demo/training/' /etc/islet/islet.conf
   sysctl kernel.perf_event_paranoid=-1
@@ -65,6 +66,8 @@ install_environment(){
   # apparmor profile prevents ``timeout -s KILL 8h tcpdump'' from running in container
   # tcpdump: error while loading shared libraries: libcrypto.so.1.0.0: cannot open shared object file: Permission denied
   apparmor_parser -R /etc/apparmor.d/usr.sbin.tcpdump
+  service apport stop
+  [[ -f "$apport" ]] && grep "enabled=0" "$apport" && sed -i 's/=1$/=0/' "$apport"
 }
 
 install_dependencies "1.)"
