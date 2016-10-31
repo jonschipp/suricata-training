@@ -10,6 +10,7 @@ LABEL program=suricata
 
 # Specify container username e.g. training, demo
 ENV VIRTUSER suricata
+ENV DEBIAN_FRONTEND noninteractive
 
 # Install dependencies
 RUN apt-get update -qq

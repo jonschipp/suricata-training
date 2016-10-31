@@ -70,8 +70,14 @@ install_environment(){
   [[ -f "$apport" ]] && grep "enabled=0" "$apport" && sed -i 's/=1$/=0/' "$apport"
 }
 
+install_image(){
+  cd $HOME/suricata-training
+  docker build -t jonschipp/suricata_training .
+}
+
 install_dependencies "1.)"
 install_islet "2.)"
 install_environment "3.)"
+install_image "4.)"
 
 echo -e "\nTry it out: ssh -p 2222 training@127.0.0.1 -o UserKnownHostsFile=/dev/null"
